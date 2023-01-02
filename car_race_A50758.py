@@ -26,7 +26,7 @@ frame_rate = 24
 clock = pygame.time.Clock()
 
 # ler uma imagem em formato bmp
-pista = pygame.image.load("circuitoA50758-1.jpg")
+pista = pygame.image.load("circuitoA50758.jpg")
 carro = pygame.image.load("carroA50758.jpg")
 
     
@@ -50,6 +50,7 @@ def parametrizacao (t): # as curvas tem metade da velocidade das retas
         resultado=(230,40)
     if 0<t<=0.5:
         resultado=(230+250*t,40) 
+        '''
     if 0.5<t<=3.64:
         resultado=(355+110*cos(-2+t),190+150*sin(-2+t))
     if 3.64<t<=4:
@@ -68,6 +69,7 @@ def parametrizacao (t): # as curvas tem metade da velocidade das retas
         resultado=(120+450*(t-5.9), 340-(450*(t-5.9)**2))#cerca do dobro da velocidade
     if t>6.4:
         resultado=(0,0)
+        '''
     return resultado
 
 #######################
@@ -120,8 +122,3 @@ while True:
 ##            para algum valor de t, dá o erro:
 ##                "local variable "result/resultado" referenced before assignment"
 ##            
-            
-
-
-
-
