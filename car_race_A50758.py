@@ -47,10 +47,16 @@ BLACK = (5, 60, 5)
 
 def parametrizacao (t): # as curvas tem metade da velocidade das retas
     if t>=0:
-        resultado=(230,40)
-    if 0<t<=0.5:
-        resultado=(230+250*t,40) 
-        '''
+        resultado = (0,370) # Posição incial
+    if 0<t<=1:
+        resultado = (0+500*t, 370 - 45*t) # primeira reta (em contra-mão)
+    if 1 < t <= 5.14: # primeira volta para sair (em contra-mão)
+        resultado = (500 - 100 * cos(0.57 + t), 325 + 100 * sin(-1 + t))
+    #if 2 < t <= 2.5: # segunda reta para mudar de sentido
+     #   resultado = (347.4 - 250 * (t - 3.64), 339.6)
+    return resultado
+
+'''
     if 0.5<t<=3.64:
         resultado=(355+110*cos(-2+t),190+150*sin(-2+t))
     if 3.64<t<=4:
@@ -69,8 +75,7 @@ def parametrizacao (t): # as curvas tem metade da velocidade das retas
         resultado=(120+450*(t-5.9), 340-(450*(t-5.9)**2))#cerca do dobro da velocidade
     if t>6.4:
         resultado=(0,0)
-        '''
-    return resultado
+'''
 
 #######################
 
