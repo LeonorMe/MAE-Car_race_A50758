@@ -70,6 +70,7 @@ def parametrizacao(t):  # as curvas tem metade da velocidade das retas
         piy = 271
         resultado = (pix - (t-ti), piy + vreta * (t-ti)) # pf = (474,425)
     if 5.1 < t <= 5.2:
+        resultado = (0, 0)
         print("A passar por debaixo da estrada")
         #carro a passar por debaixo (477,332) a (481,377)
     if 5.2 < t <= 5.5:
@@ -113,29 +114,29 @@ def carro_rotacao(t):
     if t >= 0:
         (velx, vely) = (0, 0)
     if 0 < t <= 2.20:
-        (velx, vely) = (249 , -22)
+        (velx, vely) = (249, -22)
     if 2.20 < t <= 4.9:
         raio = 70
+        ##             533 + raio * cos(1 + t * vcurva / raio), 249 - raio * sin(1 + t * vcurva / raio))
         (velx, vely) = ( -sin(1 + t * vcurva / raio) * vcurva, - cos(1 + t * vcurva / raio) * vcurva)
     if 4.9 < t <= 5.5:
         (velx, vely) = (-1, vreta)
     if 5.5 < t <= 8.3:
         raio = 70
         fi = -0.5
-        (velx, vely) = (- cos(fi + t * vcurva / raio) * vcurva, - cos(fi + t * vcurva / raio) * vcurva)
+        (velx, vely) = (-sin(fi + t * vcurva / raio) * vcurva, - cos(fi + t * vcurva / raio) * vcurva)
     if 8.3 < t <= 10.5:
-        (velx, vely) = (249, 22)
+        (velx, vely) = (-249, 22)
     if 10.5 < t:
         (velx, vely) = (0, 0)
 
     if velx > 0:
-        angulo = atan(vely / velx)
+        angulo = -atan(vely / velx)
     elif velx < 0:
-        angulo = atan(vely / velx) + 3.14159
+        angulo = -atan(vely / velx) + 3.14159
     else:
         angulo = 0
-
-    return pygame.transform.rotate(carro, angulo)
+    return pygame.transform.rotate(carro, angulo * 180/3.14159)
 
 def modulo(x,y):
     return sqrt(x*x + y*y)
@@ -156,7 +157,7 @@ def veloc(t):
         raio = 70
         mod_vel = modulo(- sin(-0.5 + t * vcurva / raio) * vcurva, - cos(-0.5 + t * vcurva / raio) * vcurva)
     if 8.3 < t <= 10.5:
-        mod_vel = modulo(249, 22)
+        mod_vel = modulo(-249, 22)
     if 10.5 < t:
         mod_vel = 0
 
@@ -167,15 +168,15 @@ def veloc(t):
 # (A) Se descomentar aqui (e comentar B) vejo onde passou/ rasto da trajetória
 # Pois neste caso só junta a pista uma vez,
 # no outro caso está sempre a juntar/desenhar a pista
-#janela.blit(pista, (0, 0))
+janela.blit(pista, (0, 0))
 
 #################################
 # Ciclo principal do jogo
 while True:
     tempo = font.render("t=" + str(int(t)), antialias, BLACK)
     velocidade = font.render("v=" + str(veloc(t)), antialias, BLACK) # ERRADO
-    janela.blit(pista, (0, 0))  # (B) se descomentar aqui (e comentar (A)) vejo movimento
-    janela.blit(carro_rotacao(t), parametrizacao(t))
+    #janela.blit(pista, (0, 0))  # (B) se descomentar aqui (e comentar (A)) vejo movimento
+    janela.blit(carro_rotacao(t), parametrizacao(t)) # pygame.transform.rotate(carro, 20 * t)
     janela.blit(policia, parametrizacao_policia(t))
     janela.blit(tempo, (20, 30))
     janela.blit(velocidade, (20, 50))  # Mostrar o valor da velocidade no ecra
