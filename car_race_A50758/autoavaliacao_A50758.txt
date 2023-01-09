@@ -1,0 +1,21 @@
+Nota esperada: 20
+
+Ficheiros entregues: todos os pedidos
+
+Parametros da avaliação:
+* 10 valores: concluído
+
+* 4 valores: concluído
+-- velocidade das retas: 250
+-- velocidade das curvas: 125
+
+* 2 valores: concluído
+-- velocidade escrita no ecrã
+
+* 2 valores: concluído
+-- função de rotação da imagem feita e funcional
+
+* 2 valores: concluído
+-- carro passa por debaixo do obstaculo "autoestrada" quando muda de sentido
+-- som de fundo adequado e com os tempos certos ( som do motor do carro e das sirenes da polícia)
+-- carro extra (carro da polícia) que percorre uma reta
